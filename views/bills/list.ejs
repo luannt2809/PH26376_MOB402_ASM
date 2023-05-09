@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa đơn</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="/stylesheets/bills.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="https://ap.poly.edu.vn/images/logo.png" alt="Logo" style="height: 70px;" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span><i class="fa-solid fa-bars"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/products">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/users">Người dùng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/bills">Hóa đơn</a>
+                            </li>
+                        </ul>
+                        <div class="dropdown">
+                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="me-2 d-none d-lg-inline text-gray-600 small">
+                                    <%= userInfor.fullname %>
+                                </span>
+                                <img src="<%= userInfor.avatar %>" alt="">
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                                <li><a class="dropdown-item" href="/profile/<%= userInfor._id %>">Hồ sơ</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span>
+                        Bills
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Họ và tên</th>
+                                        <th>Sản phẩm đã mua</th>
+                                        <th>Số lượng</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Nguyễn Thành Luân</td>
+                                        <td>iPhone 14 Pro Max</td>
+                                        <td>2</td>
+                                        <td>21/03/2023</td>
+                                        <td class="text-danger">50.000.000đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Khuất Phi Long</td>
+                                        <td>Samsung Galaxy S23 Ultra 5G</td>
+                                        <td>1</td>
+                                        <td>10/03/2023</td>
+                                        <td class="text-danger">23.690.000đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Phạm Tuấn Đạt</td>
+                                        <td>Macbook M2 16 inch</td>
+                                        <td>1</td>
+                                        <td>15/02/2023</td>
+                                        <td class="text-danger">64.990.000đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Khuất Tiến Đạt</td>
+                                        <td>Apple Watch SE 2022</td>
+                                        <td>3</td>
+                                        <td>10/03/2023</td>
+                                        <td class="text-danger">20.370.000đ</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <%- include('../layouts/footer.ejs') %>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+</body>
+
+</html>

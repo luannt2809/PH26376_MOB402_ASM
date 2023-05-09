@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thể loại</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/stylesheets/categories.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../layouts/navCategory.ejs') %>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <a href="/categories/add" class="btn btn-outline-secondary">+ Thêm thể loại</a>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span>
+                        Categories
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">STT</th>
+                                        <th>
+                                            Tên loại
+                                        </th>
+                                        <th class="d-flex justify-content-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% categories.forEach((element, index)=> { %>
+                                        <tr class="align-middle">
+                                            <td class="fw-medium text-center">
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= element.name %>
+                                            </td>
+                                            <td class="d-flex justify-content-end">
+                                                <a href="/categories/view/<%= element._id %>"
+                                                    class="btn btn-primary me-3">View</a>
+                                                <a href="/categories/edit/<%= element._id %>"
+                                                    class="btn btn-warning">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../layouts/footer.ejs') %>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

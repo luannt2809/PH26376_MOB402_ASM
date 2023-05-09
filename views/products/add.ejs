@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm sản phẩm</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../layouts/navbarProduct.ejs') %>
+        </div>
+
+        <div class="row">
+            <div class="container pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h3">Thêm sản phẩm</h1>
+            </div>
+        </div>
+    </div>
+
+    <form action="/products/add" method="POST" class="mx-4" enctype="multipart/form-data">
+
+        <div class="row form-group mb-4">
+            <div class="col">
+                <label for="name">Tên sản phẩm</label>
+                <input type="text" class="form-control mt-2" id="name" name="name" value="" placeholder="Tên sản phẩm"
+                    required>
+            </div>
+
+            <div class="col">
+                <label for="price">Giá sản phẩm</label>
+                <input type="number" class="form-control mt-2" id="price" name="price" value=""
+                    placeholder="Giá sản phẩm" required>
+            </div>
+        </div>
+
+        <div class="row form-group mb-4">
+            <div class="col">
+                <label for="cateId">Loại sản phẩm</label>
+                <select class="form-select mt-2" aria-label="Pick Category" name="cateId" required>
+                    <% categories.forEach(element=> { %>
+                        <option value="<%= element._id %>">
+                            <%= element.name %>
+                        </option>
+                        <% }) %>
+                </select>
+            </div>
+
+            <div class="col">
+                <label for="image">Chọn ảnh sản phẩm</label>
+                <input type="file" class="form-control mt-2" id="image" name="image" value=""
+                    placeholder="Chọn ảnh sản phẩm" required>
+            </div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="desc">Mô tả</label>
+            <textarea class="form-control mt-2" name="desc" id="desc" cols="30" rows="12"
+                placeholder="Mô tả sản phẩm"></textarea>
+        </div>
+
+        <div class="form-group mb-4">
+            <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+        </div>
+    </form>
+
+    <%- include('../layouts/footer.ejs') %>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

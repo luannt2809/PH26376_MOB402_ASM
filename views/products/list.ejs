@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../layouts/navbarProduct.ejs') %>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <a href="/products/add" class="btn btn-outline-secondary">+ Thêm sản phẩm</a>
+        </div>
+
+        <div class="container">
+            <form action="/products/" method="GET">
+                <div class="input-group mt-4">
+                    <input type="text" class="form-control" id="keyword" name="keyword" value="<%= searchKeyword %>"
+                        placeholder="Tên sản phẩm">
+                    <select class="form-select" aria-label="Pick Category" name="category">
+                        <option value="">Tất cả</option>
+                        <% categories.forEach(element=> { %>
+                            <option value="<%= element._id %>" <%=element._id===searchCategory ? 'selected' : '' %>>
+                                <%= element.name %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="submit">Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span>
+                        Products
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">STT</th>
+                                        <th>
+                                            Tên sản phẩm
+                                            <a
+                                                href="?sort=name&order=<%= sortOrder === 1 ? 'desc' : 'asc' %>&keyword=<%= searchKeyword %>&category=<%= searchCategory %>"><i
+                                                    class="fas fa-sort<%= sortField === 'name' ? sortOrder === 1 ? '-up' : '-down' : '' %>"></i></a>
+                                        </th>
+                                        <th>Hình ảnh</th>
+                                        <th>
+                                            Giá tiền
+                                            <a
+                                                href="?sort=price&order=<%= sortOrder === 1 ? 'desc' : 'asc' %>&keyword=<%= searchKeyword %>&category=<%= searchCategory %>"><i
+                                                    class="fas fa-sort<%= sortField === 'price' ? sortOrder === 1 ? '-up' : '-down' : '' %>"></i></a>
+                                        </th>
+                                        <th>Thể loại</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% products.forEach((element, index)=> { %>
+                                        <tr class="align-middle">
+                                            <td class="fw-medium text-center">
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= element.name %>
+                                            </td>
+                                            <td>
+                                                <img src="<%= element.image %>" alt="">
+                                            </td>
+                                            <td>
+                                                <%= element.price %>
+                                            </td>
+                                            <td>
+                                                <%= element.cateId.name %>
+                                            </td>
+                                            <td>
+                                                <a href="/products/view/<%= element._id %>"
+                                                    class="btn btn-primary">View</a>
+                                                <a href="/products/edit/<%= element._id %>"
+                                                    class="btn btn-warning">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <% if (products.length> 0) { %>
+                            <ul class="pagination justify-content-end mt-3">
+                                <% if (current==1) { %>
+                                    <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+                                    <% } else { %>
+                                        <li class="page-item"><a href="?page=1" class="page-link">First</a></li>
+                                        <% } %>
+
+                                            <% var i=(Number(current)> 5 ? Number(current) - 4 : 1) %>
+                                                <% if(i !==1) { %>
+                                                    <li class="page-item disabled"><a href="#" class="page-link">...</a>
+                                                    </li>
+                                                    <% } %>
+                                                        <% for( ; i<=Number(current) + 4 && i <=pages; i++ ) { %>
+                                                            <% if(i==current) { %>
+                                                                <li class="page-item disabled"><a href="#"
+                                                                        class="page-link">
+                                                                        <%= i %>
+                                                                    </a></li>
+                                                                <% } else { %>
+                                                                    <li class="page-item "><a href="?page=<%= i %>"
+                                                                            class="page-link">
+                                                                            <%= i %>
+                                                                        </a></li>
+                                                                    <% } %>
+                                                                        <% } %>
+                                                                            <% if (i==Number(current) + 4 && i < pages)
+                                                                                { %>
+                                                                                <li class="page-item disabled"><a
+                                                                                        href="#" class="page-link">
+                                                                                        ...
+                                                                                    </a></li>
+                                                                                <% } %>
+                                                                                    <% if (current==pages) { %>
+                                                                                        <li class="page-item disabled">
+                                                                                            <a href="#"
+                                                                                                class="page-link">Last</a>
+                                                                                        </li>
+                                                                                        <% } else { %>
+                                                                                            <li class="page-item"><a
+                                                                                                    href="?page=<%= pages %>"
+                                                                                                    class="page-link">Last</a>
+                                                                                            </li>
+                                                                                            <% } %>
+
+                            </ul>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../layouts/footer.ejs') %>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

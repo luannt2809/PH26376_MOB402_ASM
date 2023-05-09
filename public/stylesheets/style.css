@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  padding: 75rem 0;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%),
+    inset 0 -1px 0 rgb(255 255 255 / 15%);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  opacity: 0;
+  transition: all 0.2s;
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: #fbc233;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+.dropdown-menu li {
+  margin: 5px;
+}
+
+.dropdown-item {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item i {
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.dropdown-item span {
+  font-size: 14px;
+}
+
+.form-search {
+  position: relative;
+  width: 300px;
+}
+
+.form-search label {
+  position: relative;
+  width: 100%;
+}
+
+.form-search label input {
+  width: 100%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 15px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input {
+  font-size: 14px;
+}
+
+.form-search label .fa-solid {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.dropdown button {
+  border: none;
+}
+
+.dropdown button img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.total-all{
+  padding: 32px 16pt;
+}
+
+.total-all .card{
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 #ccc;
+}
+
+.card i {
+  font-size: 40px;
+}
