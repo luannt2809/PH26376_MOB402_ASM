@@ -112,25 +112,3 @@ input {
 .sap-xep {
     flex: 1;
 }
-
-/* table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 16px;
-}
-
-th {
-    background-color: #0d6efd;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */

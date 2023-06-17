@@ -97,6 +97,8 @@ exports.editUser = async (req, res, next) => {
     const user = await userModel.userModel.findOne({ _id: req.params.id });
     let userInfor = req.session.userLogin;
 
+    console.log(req.body);
+
     res.render("users/edit", { user: user, userInfor: userInfor });
   } catch (err) {
     console.error(err);
